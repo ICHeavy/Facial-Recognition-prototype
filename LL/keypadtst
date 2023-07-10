@@ -1,0 +1,44 @@
+# Untitled - By: simaj - Mon Apr 24 2023
+
+import sensor, image, time
+
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QVGA)
+sensor.skip_frames(time = 2000)
+
+
+# GPIO init
+k1 = Pin('P0', Pin.IN, Pin.PULL_UP)
+k2 = Pin('P1', Pin.IN, Pin.PULL_UP)
+button = Pin('P7', Pin.IN, Pin.PULL_UP)
+
+
+
+def pressed_keys(keypad):
+    """An array containing all detected keys that are pressed from the initalized
+    list-of-lists passed in during creation"""
+    # make a list of all the keys that are detected
+    pressed = []
+
+
+    # set all pins pins to be inputs w/pullups
+    k1 = Pin('P0', Pin.IN, Pin.PULL_UP)     #       col 4
+    k2 = Pin('P1', Pin.IN, Pin.PULL_UP)     #      row 1
+
+    # set one row low at a time
+    k2 = Pin('P1', Pin.OUT)
+    k2 = False
+
+    # check the column pins, which ones are pulled down
+    if k1 == 1:
+        pressed = 1
+    # reset the pin to be an input
+    k2 = Pin('P1', Pin.IN, Pin.PULL_UP)
+
+    return pressed
+
+
+while(True):
+)
+    print(pressed_keys())
